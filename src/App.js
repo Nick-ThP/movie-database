@@ -1,4 +1,4 @@
-import styles from './styles/App.sass';
+import styles from './styles/App.module.sass';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
