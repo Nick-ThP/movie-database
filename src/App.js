@@ -2,7 +2,7 @@ import styles from './styles/App.module.sass';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import MovieCard from './components/MovieCard';
-import SearchIcon from "./search.svg";
+import SearchIcon from "./images/search.svg";
 
 const key = process.env.REACT_APP_MOVIE_DATABASE_API_KEY
 
