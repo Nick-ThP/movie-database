@@ -4,7 +4,7 @@ const MovieCard = ({ movie: { imdbID, Year, Poster, Title, Type } }) => {
   return (
     <div className={styles.container} key={imdbID}>
       <div className={styles.poster}>
-        <img src={Poster !== "N/A" ? Poster : "https://via.placeholder.com/400"} alt={Title} />
+        <img src={Poster !== "N/A" ? Poster : 'http://placehold.jp/300x300.png'} alt={Title} />
       </div>
       <div className={styles.info}>
         <p><em>{Type}</em></p>
