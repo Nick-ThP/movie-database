@@ -49,7 +49,6 @@ function App() {
         <div className={styles.skewed}></div>
       </div>
         
-      <div className={styles.wrapper}>
         {movies?.length > 0 
           ? (
             <div className={styles.wrapper}>
@@ -63,7 +62,6 @@ function App() {
             </div>
           )
         }
-      </div>
     </>
 
   );
