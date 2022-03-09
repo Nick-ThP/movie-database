@@ -26,6 +26,7 @@ function App() {
 
   return (
     <>
+
       <div className={styles.container}>
         <h1 className={styles.title}>Movie Database</h1>
         <div className={styles.search}>
@@ -62,6 +63,7 @@ function App() {
             </div>
           )
         }
+
     </>
 
   );
