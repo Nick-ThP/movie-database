@@ -1,28 +1,44 @@
 import styles from './styles/App.module.sass';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import MovieCard from './components/MovieCard';
 import SearchIcon from "./images/search.svg";
+import MovieCard from './components/MovieCard';
+import MoviePage from './components/MoviePage';
 
 const key = process.env.REACT_APP_MOVIE_DATABASE_API_KEY
 
 function App() {
 
-  const [movies, setMovies] = useState([]);
-  const [term, setTerm] = useState("");
+  const [movieList, setMovieList] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState('')
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const searchMovies = (term) => {
-    axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${term}`)
-      .then((response) => {
-          setMovies(response.data.Search)
-      });
-  };
-
-  console.log(movies)
+  const searchMovies = (searchTerm) => {
+      axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
+        .then((response) => {
+            setMovieList(response.data.Search)
+        }) 
+  }  
 
   useEffect(() => {
-    searchMovies(term)
-  }, [term])
+    searchMovies(searchTerm)
+  }, [searchTerm])
+
+  const handleOpenMoviePage = (id) => {
+      let isLoading = true
+      axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
+        .then((response) => {
+            setSelectedMovie(response.data)
+        })
+      let isLoading = false
+  }
+  
+  const handleCloseMoviePage = () => {
+      setSelectedMovie('')
+  }
+
+  console.log(movieList)
+  console.log(selectedMovie)
 
   return (
     <>
@@ -34,8 +50,8 @@ function App() {
             className={styles.searchBar}
             type="text"
             placeholder="search for movies here"
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <div className={styles.icon}>
             <img 
@@ -50,23 +66,28 @@ function App() {
         <div className={styles.skewed}></div>
       </div>
         
-        {movies?.length > 0 
-          ? (
-            <div className={styles.wrapper}>
-              {movies.map((movie) => (
-                <MovieCard movie={movie} />
-              ))}
-            </div>
-          ) : (
-            <div className={styles.noResults}>
-              <h2>No movies were found. Please adjust your search term.</h2>
-            </div>
-          )
-        }
+      {
+        typeof selectedMovie.Title != "undefined" 
+      ? 
+        <div className={styles.pageWrapper}>
+          <MoviePage selectedMovie={selectedMovie} handleCloseMoviePage={handleCloseMoviePage} />
+        </div>
+      : 
+        movieList?.length > 0
+      ? 
+        <div className={styles.cardWrapper}>
+          {movieList.map((movie) => (
+            <MovieCard movie={movie} handleOpenMoviePage={handleOpenMoviePage} />
+          ))}
+        </div>
+      :
+        <div className={styles.noResults}>
+          <h2>No movies were found. Please adjust your search term.</h2>
+        </div>
+      }
 
     </>
-
-  );
+  )
 }
 
 export default App;
