@@ -4,6 +4,7 @@ import axios from 'axios';
 import SearchIcon from "./images/search.svg";
 import MovieCard from './components/MovieCard';
 import MoviePage from './components/MoviePage';
+import Spinner from './components/Spinner';
 
 const key = process.env.REACT_APP_MOVIE_DATABASE_API_KEY
 
@@ -24,13 +25,15 @@ function App() {
     searchMovies(searchTerm)
   }, [searchTerm])
 
+  let isLoading
+
   const handleOpenMoviePage = (id) => {
-      let isLoading = true
+      isLoading = true
       axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
         .then((response) => {
             setSelectedMovie(response.data)
         })
-      let isLoading = false
+      isLoading = false
   }
   
   const handleCloseMoviePage = () => {
@@ -40,7 +43,12 @@ function App() {
   console.log(movieList)
   console.log(selectedMovie)
 
+  if (isLoading === true) {
+    return <Spinner />
+  }
+
   return (
+
     <>
 
       <div className={styles.container}>
@@ -65,7 +73,7 @@ function App() {
       <div>
         <div className={styles.skewed}></div>
       </div>
-        
+     
       {
         typeof selectedMovie.Title != "undefined" 
       ? 
@@ -87,6 +95,7 @@ function App() {
       }
 
     </>
+
   )
 }
 
