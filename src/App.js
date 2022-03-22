@@ -10,40 +10,34 @@ const key = process.env.REACT_APP_MOVIE_DATABASE_API_KEY
 
 function App() {
 
-  const [movieList, setMovieList] = useState([]);
+  const [movieList, setMovieList] = useState([])
   const [selectedMovie, setSelectedMovie] = useState('')
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const searchMovies = (searchTerm) => {
       axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
-        .then((response) => {
-            setMovieList(response.data.Search)
-        }) 
+        .then((response) => {setMovieList(response.data.Search)}) 
   }  
 
   useEffect(() => {
+    handleCloseMoviePage()
     searchMovies(searchTerm)
   }, [searchTerm])
 
-  let isLoading
-
-  const handleOpenMoviePage = (id) => {
-      isLoading = true
+  const handleOpenMoviePage = (id, setLoading) => {
+      setLoading(state => !state)
+      console.log(loading)
       axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
-        .then((response) => {
-            setSelectedMovie(response.data)
-        })
-      isLoading = false
+        .then((response) => {setSelectedMovie(response.data)})
+        .then(setLoading(state => !state))
   }
   
   const handleCloseMoviePage = () => {
       setSelectedMovie('')
   }
 
-  console.log(movieList)
-  console.log(selectedMovie)
-
-  if (isLoading === true) {
+  if (loading) {
     return <Spinner />
   }
 
@@ -85,7 +79,7 @@ function App() {
       ? 
         <div className={styles.cardWrapper}>
           {movieList.map((movie) => (
-            <MovieCard movie={movie} handleOpenMoviePage={handleOpenMoviePage} />
+            <MovieCard movie={movie} setLoading={setLoading} handleOpenMoviePage={handleOpenMoviePage} />
           ))}
         </div>
       :
