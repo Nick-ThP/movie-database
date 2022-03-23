@@ -9,10 +9,10 @@ const MoviePage = ({handleCloseMoviePage, selectedMovie: { Year, Poster, Title, 
         <div className={styles.info}>
           <div>
             <h2>{Title}</h2>
-            <h3><em>{Year}</em></h3>
+            <h3>{Year}</h3>
           </div>
           <div>
-            <h4>{`${Type.toUpperCase()} RATED ${imdbRating}/10`}</h4>
+            <h4>{`${Type.toUpperCase()} RATED ${imdbRating}`}</h4>
             <p>{Plot}</p>
           </div>
           <button className={styles.backButton} onClick={handleCloseMoviePage}>Go back to selection</button>

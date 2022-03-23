@@ -8,7 +8,7 @@ const MovieCard = ({ setLoading, handleOpenMoviePage, movie: { imdbID, Year, Pos
       </div>
       <div className={styles.info}>
         <h2>{Title}</h2>
-        <h4>{Year}</h4>
+        <h3>{Year}</h3>
       </div>
     </div>
   )

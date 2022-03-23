@@ -10,7 +10,7 @@
     font-size: 5rem
     margin-bottom: 2rem
     text-align: center
-    color: $primaryColor
+    color: $accentColor
     background-clip: text
     width: fit-content
     
@@ -66,15 +66,23 @@
     flex-wrap: wrap
 
 .noResults
-    padding-top: 7rem
+    padding-top: 5rem
+    margin-bottom: 0px
+    padding-bottom: 3rem
+    background-color: $darkColor
     text-align: center
-    color: $darkColor
-    font-size: 1.5rem
+    color: $accentColor
+    h2
+        font-size: 1.8rem
 
-@media only screen and (max-width: 623px) 
+
+@media only screen and (max-width: 723px) 
 
     .skewed
         height: 60%
 
     .title
         margin-top: 2rem
+
+    .noResults
+        padding-top: 3rem

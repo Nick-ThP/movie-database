@@ -7,18 +7,23 @@ body
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-  background-color: $lightColor
-  background-image: url('../images/background.png')
-  background-repeat: repeat
+  background: $backgroundColor
 
-h1, h2 
+h1, h2, h3
   font-family: $serifFont
 
-h3, h4, p
+h4, p, button
   font-family: $sansSerifFont
 
 h2
   margin-top: 0px
+  font-size: 1.3rem
+
+h2, p
+  overflow: hidden
+  text-overflow: ellipsis
+  display: -webkit-box
+  -webkit-box-orient: vertical
 
 h4
   margin-bottom: 20px 

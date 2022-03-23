@@ -4,7 +4,7 @@
     display: flex
     align-content: center
     justify-content: center
-    width: min(700px, 65vw)
+    width: 700px
     height: 400px 
     background: $darkColor
     color: $primaryColor
@@ -14,7 +14,8 @@
     box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.3)
 
 .poster
-    width: min(400px, 40vw)
+    background-color: $darkColor
+
 
 .info
     margin: 1rem
@@ -23,32 +24,39 @@
     align-content: start
     flex-direction: column
     padding: 20px
-    p, h4
-        margin: 0px 0px 5px 0px
     h3
+        color: $accentColor
         margin-top: 0
         font-family: $serifFont
+    h2
+        -webkit-line-clamp: 3
+    p
+        -webkit-line-clamp: 4
 
 .backButton
     margin-top: 20px
+    font-size: 1rem
     cursor: pointer
-    width: auto
+    width: 75%
     padding: 10px
     border-radius: 20px
-    background: $primaryColor
+    background: $accentColor
     box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.3)
     border: none
+    transition: 1s
     &:hover
-        background: $lightColor
+        background: $primaryColor
     &:active
         box-shadow: none
 
     
 
-@media only screen and (max-width: 600px)
+@media only screen and (max-width: 1000px)
 
     .container
+        width: 300px
         flex-direction: column
         height: auto
 
-        
+    .backButton
+        width: 100%
