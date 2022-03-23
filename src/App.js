@@ -78,7 +78,7 @@ function App() {
         movieList?.length > 0
       ? 
         <div className={styles.cardWrapper}>
-          {movieList.map((movie) => (
+          {movieList.filter((movie, index) => index < 9).map((movie) => (
             <MovieCard movie={movie} setLoading={setLoading} handleOpenMoviePage={handleOpenMoviePage} />
           ))}
         </div>
