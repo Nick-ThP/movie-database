@@ -12,7 +12,7 @@ function App() {
 
   const [movieList, setMovieList] = useState([])
   const [selectedMovie, setSelectedMovie] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState('Spider-man')
   const [loading, setLoading] = useState(false)
 
   const searchMovies = (searchTerm) => {

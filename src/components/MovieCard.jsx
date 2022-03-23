@@ -7,8 +7,7 @@ const MovieCard = ({ setLoading, handleOpenMoviePage, movie: { imdbID, Year, Pos
         <img src={Poster !== "N/A" ? Poster : 'http://placehold.jp/300x300.png'} alt={Title} />
       </div>
       <div className={styles.info}>
-        <h3>{Title}</h3>
-        <p><em>{Type}</em></p>
+        <h2>{Title}</h2>
         <h4>{Year}</h4>
       </div>
     </div>

@@ -7,10 +7,14 @@ const MoviePage = ({handleCloseMoviePage, selectedMovie: { Year, Poster, Title, 
           <img src={Poster} alt={`Poster for ${Title}`} />
         </div>
         <div className={styles.info}>
-          <h2>{Title}</h2>
-          <h3>{Year}</h3>
-          <h4>{`${Type} with a rating of ${imdbRating} out of 10`}</h4>
-          <p>{Plot}</p>
+          <div>
+            <h2>{Title}</h2>
+            <h3><em>{Year}</em></h3>
+          </div>
+          <div>
+            <h4>{`${Type.toUpperCase()} RATED ${imdbRating}/10`}</h4>
+            <p>{Plot}</p>
+          </div>
           <button className={styles.backButton} onClick={handleCloseMoviePage}>Go back to selection</button>
         </div>
         
