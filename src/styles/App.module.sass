@@ -8,7 +8,7 @@
 
 .title
     font-size: 5rem
-    margin-bottom: 2rem
+    margin-bottom: 1.5rem
     text-align: center
     color: $accentColor
     background-clip: text
@@ -43,14 +43,14 @@
     position: absolute
     top: 0
     width: 100%
-    height: 47%
+    height: 43%
     background-color: $darkColor
     z-index: -1
     transform: skewY(1deg)
     transform-origin: top right
 
 .pageWrapper
-    padding-top: 7rem
+    padding-top: 8rem
     padding-bottom: 4rem
     display: flex    
     align-content: center
@@ -58,7 +58,7 @@
     flex-wrap: wrap
     
 .cardWrapper
-    padding-top: 7rem
+    padding-top: 8rem
     padding-bottom: 4rem
     display: flex
     align-content: center
@@ -78,11 +78,15 @@
 
 @media only screen and (max-width: 723px) 
 
-    .skewed
-        height: 60%
-
     .title
+        font-size: 4rem
         margin-top: 2rem
+
+    .pageWrapper, .cardWrapper
+        padding-top: 7rem
+
+    .skewed
+        height: 47%
 
     .noResults
         padding-top: 3rem
