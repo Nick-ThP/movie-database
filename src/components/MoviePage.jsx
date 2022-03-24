@@ -3,9 +3,6 @@ import styles from '../styles/MoviePage.module.sass';
 const MoviePage = ({handleCloseMoviePage, selectedMovie: { Year, Poster, Title, Type, imdbRating, Plot } }) => {
   return (
       <div className={styles.container}>
-        <div className={styles.poster}>
-          <img src={Poster} alt={`Poster for ${Title}`} />
-        </div>
         <div className={styles.info}>
           <div>
             <h2>{Title}</h2>
@@ -17,7 +14,9 @@ const MoviePage = ({handleCloseMoviePage, selectedMovie: { Year, Poster, Title, 
           </div>
           <button className={styles.backButton} onClick={handleCloseMoviePage}>Go back to selection</button>
         </div>
-        
+        <div className={styles.poster}>
+          <img src={Poster} alt={`Poster for ${Title}`} />
+        </div>
       </div>
   )
 }
