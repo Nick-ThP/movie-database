@@ -4,7 +4,6 @@ import axios from 'axios';
 import SearchIcon from "./images/search.svg";
 import MovieCard from './components/MovieCard';
 import MoviePage from './components/MoviePage';
-import Spinner from './components/Spinner';
 
 const key = process.env.REACT_APP_MOVIE_DATABASE_API_KEY
 
@@ -20,26 +19,22 @@ function App() {
         .then((response) => {setMovieList(response.data.Search)}) 
   }  
 
-  useEffect(() => {
-    handleCloseMoviePage()
-    searchMovies(searchTerm)
-  }, [searchTerm])
-
-  const handleOpenMoviePage = (id, setLoading) => {
-      setLoading(state => !state)
-      console.log(loading)
+  const handleOpenMoviePage = (id) => {
+      setLoading(true)
       axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
         .then((response) => {setSelectedMovie(response.data)})
-        .then(setLoading(state => !state))
+        .then(setTimeout(() => setLoading(false)), 1000)
+        .then(window.scrollTo(0, 0))
   }
   
   const handleCloseMoviePage = () => {
       setSelectedMovie('')
-  }
-
-  if (loading) {
-    return <Spinner />
-  }
+  }  
+  
+  useEffect(() => {
+    handleCloseMoviePage()
+    searchMovies(searchTerm)
+  }, [searchTerm])
 
   return (
 
@@ -51,7 +46,7 @@ function App() {
           <input 
             className={styles.searchBar}
             type="text"
-            placeholder="search for movies here"
+            placeholder="Search here..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -69,6 +64,12 @@ function App() {
       </div>
      
       {
+        loading === true
+      ?
+        <div className={styles.noResults}>
+          <h2>...loading</h2>
+        </div>
+      :
         typeof selectedMovie.Title != "undefined" 
       ? 
         <div className={styles.pageWrapper}>
