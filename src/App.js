@@ -23,7 +23,7 @@ function App() {
       setLoading(true)
       axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
         .then((response) => {setSelectedMovie(response.data)})
-        .then(setTimeout(() => setLoading(false)), 5000)
+        .then(setTimeout(() => setLoading(false)), 2000)
   }
   
   const handleCloseMoviePage = () => {
