@@ -29,6 +29,7 @@ function App() {
   
   const handleCloseMoviePage = () => {
       setSelectedMovie('')
+      window.scroll(0, 0)
   }  
   
   useEffect(() => {
