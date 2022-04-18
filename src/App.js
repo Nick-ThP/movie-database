@@ -20,8 +20,11 @@ function App() {
   }  
 
   const handleOpenMoviePage = (id) => {
+      setLoading(true)
       axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
         .then((response) => {setSelectedMovie(response.data)})
+        .then((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? window.scroll(0, 0) : null)
+        .then(setTimeout(() => {setLoading(false)}, 500))
   }
   
   const handleCloseMoviePage = () => {
@@ -76,8 +79,8 @@ function App() {
         movieList?.length > 0
       ? 
         <div className={styles.cardWrapper}>
-          {movieList.filter((movie, index) => index < 10).map((movie) => (
-            <MovieCard movie={movie} setLoading={setLoading} handleOpenMoviePage={handleOpenMoviePage} />
+          {movieList.filter((movie, index) => index < 10).map((movie, index) => (
+            <MovieCard movie={movie} key={index} setLoading={setLoading} handleOpenMoviePage={handleOpenMoviePage} />
           ))}
         </div>
       :
