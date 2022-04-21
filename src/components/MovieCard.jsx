@@ -1,6 +1,6 @@
 import styles from '../styles/MovieCard.module.sass';
 
-const MovieCard = ({ setLoading, handleOpenMoviePage, movie: { imdbID, Year, Poster, Title, Type } }) => {
+const MovieCard = ({ setLoading, handleOpenMoviePage, movie: { imdbID, Year, Poster, Title } }) => {
   return (
     <div className={styles.container} key={imdbID} onClick={() => handleOpenMoviePage(imdbID, setLoading)} >
       <div className={styles.poster}>
