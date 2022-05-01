@@ -24,7 +24,7 @@ function App() {
       axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
         .then((response) => {setSelectedMovie(response.data)})
         .then((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? window.scroll(0, 0) : null)
-        .then(setTimeout(() => {setLoading(false)}, 500))
+        .then(setTimeout(() => {setLoading(false)}, 800))
   }
   
   const handleCloseMoviePage = () => {
