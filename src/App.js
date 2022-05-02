@@ -81,7 +81,7 @@ function App() {
       ? 
         <div className={styles.cardWrapper}>
           {movieList.filter((movie, index) => index < 10).map((movie, index) => (
-            <MovieCard movie={movie} key={index} setLoading={setLoading} handleOpenMoviePage={handleOpenMoviePage} />
+            <MovieCard movie={movie} key={index} handleOpenMoviePage={handleOpenMoviePage} />
           ))}
         </div>
       :
