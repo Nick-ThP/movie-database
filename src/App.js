@@ -15,8 +15,8 @@ function App() {
   const [loading, setLoading] = useState(false)
 
   const searchMovies = (searchTerm) => {
-      axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
-        .then((response) => {setMovieList(response.data.Search)}) 
+      setTimeout(() => {axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
+        .then((response) => {setMovieList(response.data.Search)})}, 1000)
   }  
 
   const handleOpenMoviePage = (id) => {
@@ -33,8 +33,8 @@ function App() {
   }  
   
   useEffect(() => {
-    handleCloseMoviePage()
-    searchMovies(searchTerm)
+      handleCloseMoviePage()
+      searchMovies(searchTerm)
   }, [searchTerm])
 
   return (

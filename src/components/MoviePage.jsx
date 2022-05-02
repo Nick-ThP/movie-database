@@ -1,6 +1,6 @@
 import styles from '../styles/MoviePage.module.sass';
 
-const MoviePage = ({handleCloseMoviePage, selectedMovie: { Year, Poster, Title, Type, imdbRating, Plot } }) => {
+const MoviePage = ({ handleCloseMoviePage, selectedMovie: { Year, Poster, Title, Type, imdbRating, Plot } }) => {
   return (
       <div className={styles.container}>
         <div className={styles.info}>
