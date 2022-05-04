@@ -15,8 +15,8 @@ function App() {
   const [loading, setLoading] = useState(false)
 
   const searchMovies = (searchTerm) => {
-      setTimeout(() => {axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
-        .then((response) => {setMovieList(response.data.Search)})}, 300)
+      axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
+        .then((response) => {setMovieList(response.data.Search)})
   }  
 
   const handleOpenMoviePage = (id) => {
