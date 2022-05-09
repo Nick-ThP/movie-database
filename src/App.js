@@ -1,5 +1,5 @@
 import styles from './styles/App.module.sass';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import SearchIcon from "./images/search.svg";
 import MovieCard from './components/MovieCard';
@@ -14,10 +14,10 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('Spider-man')
   const [loading, setLoading] = useState(false)
 
-  const searchMovies = (searchTerm) => {
+  const searchMovies = useCallback(() => {
       axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
         .then((response) => {setMovieList(response.data.Search)})
-  }  
+  }, [searchTerm])  
 
   const handleOpenMoviePage = (id) => {
       setLoading(true)
@@ -34,8 +34,8 @@ function App() {
   
   useEffect(() => {
       handleCloseMoviePage()
-      searchMovies(searchTerm)
-  }, [searchTerm])
+      searchMovies()
+  }, [searchMovies])
 
   return (
 
