@@ -1,5 +1,6 @@
 import styles from './styles/App.module.sass';
 import { useState, useEffect, useCallback } from 'react';
+import { useLocalStorage } from './Hooks/useLocalStorage';
 import axios from 'axios';
 import SearchIcon from "./images/search.svg";
 import MovieCard from './components/MovieCard';
@@ -13,6 +14,8 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState('')
   const [searchTerm, setSearchTerm] = useState('Spider-man')
   const [loading, setLoading] = useState(false)
+  const [favoriteToggle, setFavoriteToggle] = useState(false)
+  const [favoriteMovies, setFavoriteMovies] = useLocalStorage('movies', [])
 
   const searchMovies = useCallback(() => {
       axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
@@ -69,6 +72,14 @@ function App() {
       ?
         <div className={styles.noResults}>
           <h2>...loading</h2>
+        </div>
+      :
+        favoriteToggle === true
+      ?
+        <div className={styles.cardWrapper}>
+          {favoriteMovies.filter((movie, index) => index < 10).map((movie, index) => (
+            <FavoriteMovieCard movie={movie} key={index}  />
+          ))}
         </div>
       :
         typeof selectedMovie.Title != "undefined" 
