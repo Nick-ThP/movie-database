@@ -1,6 +1,6 @@
 import styles from '../styles/MovieCard.module.sass';
 
-const FavoriteMovieCard = ({ handleRemoveFromFavorite, movie: { imdbID, Poster, Title } }) => {
+const FavoriteMovieCard = ({ handleRemoveFromFavorite, favoriteMovie: { imdbID, Poster, Title } }) => {
   return (
     <div className={styles.container}>
       <div className={styles.poster}>

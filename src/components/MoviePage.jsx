@@ -1,6 +1,6 @@
 import styles from '../styles/MoviePage.module.sass';
 
-const MoviePage = ({ handleCloseMoviePage, selectedMovie: { Year, Poster, Title, Type, imdbRating, Plot } }) => {
+const MoviePage = ({ handleCloseMoviePage, handleSetNewFavoriteMovie, selectedMovie: { Year, Poster, Title, Type, imdbRating, Plot } }) => {
   return (
       <div className={styles.container}>
         <div className={styles.info}>
@@ -12,6 +12,7 @@ const MoviePage = ({ handleCloseMoviePage, selectedMovie: { Year, Poster, Title,
             <h4>{`${Type.toUpperCase()} RATED ${imdbRating}`}</h4>
             <p>{Plot}</p>
           </div>
+          <button className={styles.backButton} onClick={(selectedMovie) => handleSetNewFavoriteMovie(selectedMovie)}>Set as favorite</button>
           <button className={styles.backButton} onClick={handleCloseMoviePage}>Go back to selection</button>
         </div>
         <div className={styles.poster}>

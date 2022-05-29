@@ -1,8 +1,9 @@
 import styles from './styles/App.module.sass';
 import { useState, useEffect, useCallback } from 'react';
-import { useLocalStorage } from './Hooks/useLocalStorage';
+import { useLocalStorage } from './hooks/useLocalStorage';
 import axios from 'axios';
 import SearchIcon from "./images/search.svg";
+import FavoriteMovieCard from './components/FavoriteMovieCard'
 import MovieCard from './components/MovieCard';
 import MoviePage from './components/MoviePage';
 
@@ -15,7 +16,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('Spider-man')
   const [loading, setLoading] = useState(false)
   const [favoriteToggle, setFavoriteToggle] = useState(false)
-  const [favoriteMovies, setFavoriteMovies] = useLocalStorage('movies', [])
+  const [favoriteMovies, setFavoriteMovies] = useState([])
 
   const searchMovies = useCallback(() => {
       axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
@@ -34,6 +35,14 @@ function App() {
       setSelectedMovie('')
       window.scroll(0, 0)
   }  
+
+  const handleSetNewFavoriteMovie = (selectedMovie) => {
+      setFavoriteMovies([...selectedMovie, favoriteMovies])
+  }
+
+  const handleRemoveFromFavorites = (id) => {
+      setFavoriteMovies(favoriteMovies.filter(id => !id))
+  }
   
   useEffect(() => {
       handleCloseMoviePage()
@@ -46,20 +55,26 @@ function App() {
 
       <div className={styles.container}>
         <h1 className={styles.title}>Movie Database</h1>
-        <div className={styles.search}>
-          <input 
-            className={styles.searchBar}
-            type="text"
-            placeholder="Search here..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <div className={styles.icon}>
-            <img 
-              src={SearchIcon} 
-              alt="search"
+        <div className={styles.searchAndToggle}>
+          <div className={styles.search}>
+            <input 
+              className={styles.searchBar}
+              type="text"
+              placeholder="Search here..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
+            <div className={styles.icon}>
+              <img 
+                src={SearchIcon} 
+                alt="search"
+              />
+            </div>
           </div>
+          <button 
+            className={favoriteToggle === false ? styles.toggleFavoritesBtn : styles.toggleFavoritesBtnActive}
+            onClick={() => setFavoriteToggle(!favoriteToggle)}
+            >Toggle Favorites</button>
         </div>
       </div>
 
@@ -77,22 +92,22 @@ function App() {
         favoriteToggle === true
       ?
         <div className={styles.cardWrapper}>
-          {favoriteMovies.filter((movie, index) => index < 10).map((movie, index) => (
-            <FavoriteMovieCard movie={movie} key={index}  />
+          {favoriteMovies.map((favoriteMovie) => (
+            <FavoriteMovieCard favoriteMovie={favoriteMovie} key={favoriteMovie.imdbID} handleRemoveFromFavorite={handleRemoveFromFavorites} />
           ))}
         </div>
       :
         typeof selectedMovie.Title != "undefined" 
       ? 
         <div className={styles.pageWrapper}>
-          <MoviePage selectedMovie={selectedMovie} handleCloseMoviePage={handleCloseMoviePage} />
+          <MoviePage selectedMovie={selectedMovie} handleCloseMoviePage={handleCloseMoviePage} handleSetNewFavoriteMovie={handleSetNewFavoriteMovie} />
         </div>
       : 
         movieList?.length > 0
       ? 
         <div className={styles.cardWrapper}>
-          {movieList.filter((movie, index) => index < 10).map((movie, index) => (
-            <MovieCard movie={movie} key={index} handleOpenMoviePage={handleOpenMoviePage} />
+          {movieList.map((movie) => (
+            <MovieCard movie={movie} key={movie.imdbID} handleOpenMoviePage={handleOpenMoviePage} />
           ))}
         </div>
       :
