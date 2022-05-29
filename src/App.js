@@ -37,7 +37,7 @@ function App() {
   }  
 
   const handleSetNewFavoriteMovie = (selectedMovie) => {
-      setFavoriteMovies([...selectedMovie, favoriteMovies])
+      setFavoriteMovies((favoriteMovies) => [...favoriteMovies, selectedMovie])
   }
 
   const handleRemoveFromFavorites = (id) => {
