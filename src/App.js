@@ -23,6 +23,8 @@ function App() {
         .then((response) => {setMovieList(response.data.Search)})
   }, [searchTerm])  
 
+  console.log(selectedMovie)
+
   const handleOpenMoviePage = (id) => {
       setFavoriteToggle(false)
       setLoading(true)
@@ -33,12 +35,13 @@ function App() {
   }
   
   const handleCloseMoviePage = () => {
+      setFavoriteToggle(false)
       setSelectedMovie('')
       window.scroll(0, 0)
   }  
 
   const handleSetNewFavoriteMovie = (selected) => {
-      setFavoriteMovies((favoriteMovies) => [...favoriteMovies, selected])
+      favoriteMovies.includes(selected) === false && setFavoriteMovies((prev) => [...prev, selected])
   }
 
   const handleRemoveFromFavorites = (selected) => {
@@ -55,7 +58,7 @@ function App() {
     <>
 
       <div className={styles.container}>
-        <h1 className={styles.title}>Movie Database</h1>
+        <h1 className={styles.title} onClick={() => handleCloseMoviePage()}>Movie Database</h1>
         <div className={styles.searchAndToggle}>
           <div className={styles.search}>
             <input 
@@ -94,7 +97,7 @@ function App() {
       ?
         <div className={styles.cardWrapper}>
           {favoriteMovies.map((favoriteMovie) => (
-            <FavoriteMovieCard favoriteMovie={favoriteMovie} key={favoriteMovie.imdbID} />
+            <FavoriteMovieCard favoriteMovie={favoriteMovie} key={favoriteMovie.imdbID} handleOpenMoviePage={handleOpenMoviePage} />
           ))}
         </div>
       :
@@ -103,14 +106,14 @@ function App() {
         <div className={styles.pageWrapper}>
           <MoviePage 
             selectedMovie={selectedMovie} 
-            favoriteMovies={favoriteMovies} 
+            favoriteMovies={favoriteMovies}
             handleCloseMoviePage={handleCloseMoviePage} 
             handleSetNewFavoriteMovie={handleSetNewFavoriteMovie}
             handleRemoveFromFavorites={handleRemoveFromFavorites} 
           />
         </div>
       : 
-        movieList?.length > 0
+        movieList.length !== 0
       ? 
         <div className={styles.cardWrapper}>
           {movieList.map((movie) => (

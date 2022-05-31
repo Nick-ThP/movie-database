@@ -13,11 +13,11 @@ const MoviePage = ({ selectedMovie, favoriteMovies, handleSetNewFavoriteMovie, h
             <p>{selectedMovie.Plot}</p>
           </div>
           {
-            favoriteMovies.includes(selectedMovie) === true
+            favoriteMovies.some(movie => movie.imdbID === selectedMovie.imdbID) 
           ?
             <button className={styles.backButton} onClick={() => handleRemoveFromFavorites(selectedMovie)}>
               Remove from favorites
-            </button>
+            </button> 
           :
             <button className={styles.backButton} onClick={() => handleSetNewFavoriteMovie(selectedMovie)}>
               Set as favorite
