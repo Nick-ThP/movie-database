@@ -41,7 +41,7 @@ function App() {
   }  
 
   const handleSetNewFavoriteMovie = (selected) => {
-      favoriteMovies.includes(selected) === false && setFavoriteMovies((prev) => [...prev, selected])
+      favoriteMovies.some(movie => movie.imdbID === selectedMovie.imdbID) === false && setFavoriteMovies((prev) => [...prev, selected])
   }
 
   const handleRemoveFromFavorites = (selected) => {
@@ -113,7 +113,7 @@ function App() {
           />
         </div>
       : 
-        movieList.length !== 0
+        movieList?.length > 0
       ? 
         <div className={styles.cardWrapper}>
           {movieList.map((movie) => (
