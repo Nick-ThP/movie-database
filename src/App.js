@@ -95,11 +95,17 @@ function App() {
       :
         favoriteToggle === true
       ?
-        <div className={styles.cardWrapper}>
-          {favoriteMovies.map((favoriteMovie) => (
-            <FavoriteMovieCard favoriteMovie={favoriteMovie} key={favoriteMovie.imdbID} handleOpenMoviePage={handleOpenMoviePage} />
-          ))}
-        </div>
+        favoriteMovies?.length > 0 
+        ? 
+          <div className={styles.cardWrapper}>
+            {favoriteMovies.map((favoriteMovie) => (
+              <FavoriteMovieCard favoriteMovie={favoriteMovie} key={favoriteMovie.imdbID} handleOpenMoviePage={handleOpenMoviePage} />
+            ))}
+          </div>
+        :
+          <div className={styles.noResults}>
+            <h2>Sorry, you don't seem to have any favorite movies.</h2>
+          </div>
       :
         typeof selectedMovie.Title != "undefined" 
       ? 
