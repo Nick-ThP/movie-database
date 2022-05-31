@@ -24,6 +24,7 @@ function App() {
   }, [searchTerm])  
 
   const handleOpenMoviePage = (id) => {
+      setFavoriteToggle(false)
       setLoading(true)
       axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
         .then((response) => {setSelectedMovie(response.data)})
@@ -36,12 +37,12 @@ function App() {
       window.scroll(0, 0)
   }  
 
-  const handleSetNewFavoriteMovie = (selectedMovie) => {
-      setFavoriteMovies((favoriteMovies) => [...favoriteMovies, selectedMovie])
+  const handleSetNewFavoriteMovie = (selected) => {
+      setFavoriteMovies((favoriteMovies) => [...favoriteMovies, selected])
   }
 
-  const handleRemoveFromFavorites = (id) => {
-      setFavoriteMovies(favoriteMovies.filter(id => !id))
+  const handleRemoveFromFavorites = (selected) => {
+      setFavoriteMovies(favoriteMovies.filter(movie => movie.imdbID !== selected.imdbID))
   }
   
   useEffect(() => {
@@ -93,14 +94,20 @@ function App() {
       ?
         <div className={styles.cardWrapper}>
           {favoriteMovies.map((favoriteMovie) => (
-            <FavoriteMovieCard favoriteMovie={favoriteMovie} key={favoriteMovie.imdbID} handleRemoveFromFavorite={handleRemoveFromFavorites} />
+            <FavoriteMovieCard favoriteMovie={favoriteMovie} key={favoriteMovie.imdbID} />
           ))}
         </div>
       :
         typeof selectedMovie.Title != "undefined" 
       ? 
         <div className={styles.pageWrapper}>
-          <MoviePage selectedMovie={selectedMovie} handleCloseMoviePage={handleCloseMoviePage} handleSetNewFavoriteMovie={handleSetNewFavoriteMovie} />
+          <MoviePage 
+            selectedMovie={selectedMovie} 
+            favoriteMovies={favoriteMovies} 
+            handleCloseMoviePage={handleCloseMoviePage} 
+            handleSetNewFavoriteMovie={handleSetNewFavoriteMovie}
+            handleRemoveFromFavorites={handleRemoveFromFavorites} 
+          />
         </div>
       : 
         movieList?.length > 0
