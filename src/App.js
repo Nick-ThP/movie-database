@@ -1,17 +1,26 @@
-import styles from './styles/App.module.sass';
+//Hooks
 import { useState, useEffect, useCallback } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import axios from 'axios';
-import SearchIcon from "./images/search.svg";
-import FavoriteMovieCard from './components/FavoriteMovieCard'
-import MovieCard from './components/MovieCard';
-import MoviePage from './components/MoviePage';
-import ToggleButton from './components/ToggleButton';
 
+//Libraries
+import axios from 'axios';
+
+// Styles
+import styles from './styles/App.module.sass';
+
+// Components
+import SearchBar from './components/SearchBar';
+import ToggleButton from './components/ToggleButton';
+import FavoriteMovieCard from './components/FavoriteMovieCard'
+import MoviePage from './components/MoviePage';
+import MovieCard from './components/MovieCard';
+
+// API key
 const key = process.env.REACT_APP_MOVIE_DATABASE_API_KEY
 
 function App() {
 
+  // States
   const [movieList, setMovieList] = useState([])
   const [selectedMovie, setSelectedMovie] = useState('')
   const [searchTerm, setSearchTerm] = useState('Spider-man')
@@ -19,17 +28,23 @@ function App() {
   const [favoriteToggle, setFavoriteToggle] = useState(false)
   const [favoriteMovies, setFavoriteMovies] = useState([])
 
+  // Search callback
   const searchMovies = useCallback(() => {
       axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}`)
         .then((response) => {setMovieList(response.data.Search)})
   }, [searchTerm])  
+  
+  // Effects
+  useEffect(() => {
+      handleCloseMoviePage()
+      searchMovies()
+  }, [searchMovies])
 
-  console.log(selectedMovie)
-
-  const handleOpenMoviePage = (id) => {
+  // Handlers
+  const handleOpenMoviePage = (imdbID) => {
       setFavoriteToggle(false)
       setLoading(true)
-      axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
+      axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${imdbID}`)
         .then((response) => {setSelectedMovie(response.data)})
         .then((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? window.scroll(0, 0) : null)
         .then(setTimeout(() => {setLoading(false)}, 700))
@@ -49,33 +64,13 @@ function App() {
       setFavoriteMovies(favoriteMovies.filter(movie => movie.imdbID !== selected.imdbID))
   }
   
-  useEffect(() => {
-      handleCloseMoviePage()
-      searchMovies()
-  }, [searchMovies])
-
+  // Render
   return (
-
     <>
-
       <div className={styles.container}>
         <h1 className={styles.title} onClick={() => handleCloseMoviePage()}>Movie Database</h1>
         <div className={styles.searchAndToggle}>
-          <div className={styles.search}>
-            <input 
-              className={styles.searchBar}
-              type="text"
-              placeholder="Search here..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div className={styles.icon}>
-              <img 
-                src={SearchIcon} 
-                alt="search"
-              />
-            </div>
-          </div>
+          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <ToggleButton favoriteToggle={favoriteToggle} setFavoriteToggle={setFavoriteToggle} />
         </div>
       </div>
@@ -84,6 +79,9 @@ function App() {
         <div className={styles.skewed}></div>
       </div>
      
+      {/* Nested ternary operators... Yes, i know. I might implement React Router later on...
+      This entire project has been a big learning project, so it's not the cleanest */}
+
       {
         loading === true
       ?
@@ -137,9 +135,7 @@ function App() {
           <h2>No movies were found. Please adjust your search term.</h2>
         </div>
       }
-
     </>
-
   )
 }
 
