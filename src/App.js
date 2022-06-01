@@ -11,9 +11,9 @@ import styles from './styles/App.module.sass';
 // Components
 import SearchBar from './components/SearchBar';
 import ToggleButton from './components/ToggleButton';
-import FavoriteMovieCard from './components/FavoriteMovieCard'
-import MoviePage from './components/MoviePage';
 import MovieCard from './components/MovieCard';
+import MoviePage from './components/MoviePage';
+
 
 // API key
 const key = process.env.REACT_APP_MOVIE_DATABASE_API_KEY
@@ -93,11 +93,11 @@ function App() {
       ?
         favoriteMovies?.length > 0 
         ? 
-          <div className={styles.cardWrapper}>
-            {favoriteMovies.map((favoriteMovie) => (
-              <FavoriteMovieCard 
-                favoriteMovie={favoriteMovie} 
-                key={favoriteMovie.imdbID} 
+          <div className={styles.wrapper}>
+            {favoriteMovies.map((movie) => (
+              <MovieCard 
+                movie={movie} 
+                key={movie.imdbID} 
                 handleOpenMoviePage={handleOpenMoviePage} 
               />
             ))}
@@ -109,7 +109,7 @@ function App() {
       :
         typeof selectedMovie.Title != "undefined" 
       ? 
-        <div className={styles.pageWrapper}>
+        <div className={styles.wrapper}>
           <MoviePage 
             selectedMovie={selectedMovie} 
             favoriteMovies={favoriteMovies}
@@ -121,7 +121,7 @@ function App() {
       : 
         movieList?.length > 0
       ? 
-        <div className={styles.cardWrapper}>
+        <div className={styles.wrapper}>
           {movieList.map((movie) => (
             <MovieCard 
               movie={movie} 
