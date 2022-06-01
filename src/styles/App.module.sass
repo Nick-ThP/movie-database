@@ -16,8 +16,8 @@
     cursor: pointer
 
 .searchAndToggle
-    display: flex
-    justify-content: center
+    display: inline-flex
+    justify-content: space-around
     align-content: center
     gap: 30px
     flex-wrap: wrap
@@ -55,16 +55,17 @@
         font-size: 4rem
         margin-top: 2rem
 
-    .pageWrapper, .cardWrapper
-        padding-top: 7rem
+    .wrapper
+        padding-top: 4rem
 
     .skewed
-        height: 250px
+        height: 300px
 
     .noResults
-        padding-top: 3rem
+        padding-top: 2rem
+        padding-bottom: 1rem
 
 @media only screen and (max-width: 580px) 
 
     .skewed
-        height: 330px
+        height: 380px
