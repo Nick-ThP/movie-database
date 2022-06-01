@@ -6,6 +6,7 @@ import SearchIcon from "./images/search.svg";
 import FavoriteMovieCard from './components/FavoriteMovieCard'
 import MovieCard from './components/MovieCard';
 import MoviePage from './components/MoviePage';
+import ToggleButton from './components/ToggleButton';
 
 const key = process.env.REACT_APP_MOVIE_DATABASE_API_KEY
 
@@ -31,7 +32,7 @@ function App() {
       axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${id}`)
         .then((response) => {setSelectedMovie(response.data)})
         .then((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? window.scroll(0, 0) : null)
-        .then(setTimeout(() => {setLoading(false)}, 1000))
+        .then(setTimeout(() => {setLoading(false)}, 700))
   }
   
   const handleCloseMoviePage = () => {
@@ -75,10 +76,7 @@ function App() {
               />
             </div>
           </div>
-          <button 
-            className={favoriteToggle === false ? styles.toggleFavoritesBtn : styles.toggleFavoritesBtnActive}
-            onClick={() => setFavoriteToggle(!favoriteToggle)}
-            >Toggle Favorites</button>
+          <ToggleButton favoriteToggle={favoriteToggle} setFavoriteToggle={setFavoriteToggle} />
         </div>
       </div>
 
@@ -99,7 +97,11 @@ function App() {
         ? 
           <div className={styles.cardWrapper}>
             {favoriteMovies.map((favoriteMovie) => (
-              <FavoriteMovieCard favoriteMovie={favoriteMovie} key={favoriteMovie.imdbID} handleOpenMoviePage={handleOpenMoviePage} />
+              <FavoriteMovieCard 
+                favoriteMovie={favoriteMovie} 
+                key={favoriteMovie.imdbID} 
+                handleOpenMoviePage={handleOpenMoviePage} 
+              />
             ))}
           </div>
         :
@@ -123,7 +125,11 @@ function App() {
       ? 
         <div className={styles.cardWrapper}>
           {movieList.map((movie) => (
-            <MovieCard movie={movie} key={movie.imdbID} handleOpenMoviePage={handleOpenMoviePage} />
+            <MovieCard 
+              movie={movie} 
+              key={movie.imdbID} 
+              handleOpenMoviePage={handleOpenMoviePage} 
+            />
           ))}
         </div>
       :
