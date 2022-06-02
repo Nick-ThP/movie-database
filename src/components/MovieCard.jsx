@@ -1,6 +1,6 @@
 import styles from '../styles/MovieCard.module.sass';
 
-const MovieCard = ({ handleOpenMoviePage, movie: { imdbID, Year, Poster, Title } }) => {
+const MovieCard = ({ handleOpenMoviePage, movie: { imdbID, Year, Poster, Title, Type, imdbRating } }) => {
   return (
     <div className={styles.container} key={imdbID} onClick={() => handleOpenMoviePage(imdbID)} >
       <div className={styles.poster}>
@@ -8,7 +8,12 @@ const MovieCard = ({ handleOpenMoviePage, movie: { imdbID, Year, Poster, Title }
       </div>
       <div className={styles.info}>
         <h2>{Title}</h2>
-        <h3>{Year}</h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <h3>{Year}</h3>
+          <h3>{imdbRating}</h3>
+          <h3>{Type.toUpperCase()}</h3>
+        </div>
+        
       </div>
     </div>
   )
