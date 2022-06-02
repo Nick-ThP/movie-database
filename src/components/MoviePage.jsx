@@ -23,6 +23,7 @@ const MoviePage = ({ selectedMovie, favoriteMovies, handleSetNewFavoriteMovie, h
             }
           </div>
           <div className={styles.buttons}>
+            <button className={styles.button} onClick={handleCloseMoviePage}>Go back to selection</button>
             {
               favoriteMovies.some(movie => movie.imdbID === selectedMovie.imdbID) 
             ?
@@ -34,7 +35,6 @@ const MoviePage = ({ selectedMovie, favoriteMovies, handleSetNewFavoriteMovie, h
                 Set as favorite
               </button>
             }
-            <button className={styles.button} onClick={handleCloseMoviePage}>Go back to selection</button>
           </div>
         </div>
         <div className={styles.poster}>

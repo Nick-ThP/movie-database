@@ -100,7 +100,10 @@ function App() {
               <MovieCard 
                 movie={movie} 
                 key={movie.imdbID} 
+                favoriteMovies={favoriteMovies}
                 handleOpenMoviePage={handleOpenMoviePage} 
+                handleSetNewFavoriteMovie={handleSetNewFavoriteMovie}
+                handleRemoveFromFavorites={handleRemoveFromFavorites}
               />
             ))}
           </div>
@@ -128,7 +131,10 @@ function App() {
             <MovieCard 
               movie={movie} 
               key={movie.imdbID} 
+              favoriteMovies={favoriteMovies}
               handleOpenMoviePage={handleOpenMoviePage} 
+              handleSetNewFavoriteMovie={handleSetNewFavoriteMovie}
+              handleRemoveFromFavorites={handleRemoveFromFavorites}
             />
           ))}
         </div>

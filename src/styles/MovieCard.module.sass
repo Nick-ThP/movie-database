@@ -33,20 +33,23 @@
     display: flex
     justify-content: space-between
     flex-direction: column
+    width: 100%
     height: min(100px, 50%)
     padding: 20px 
     h2
         -webkit-line-clamp: 2
         font-size: 1.1rem
+        max-width: 80%
     h3
         color: $accentColor
         font-family: $serifFont
         margin: 0px 0px 5px 0px
         font-size: 0.85rem
 
-.button 
-    width: 100%
-    height: auto
+.iconActive, .iconInactive 
+    height: 30px
+    width: 20%
+    fill: $accentColor
     
 
 @media only screen and (max-width: 754px)
