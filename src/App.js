@@ -102,8 +102,6 @@ function App() {
                 key={movie.imdbID} 
                 favoriteMovies={favoriteMovies}
                 handleOpenMoviePage={handleOpenMoviePage} 
-                handleSetNewFavoriteMovie={handleSetNewFavoriteMovie}
-                handleRemoveFromFavorites={handleRemoveFromFavorites}
               />
             ))}
           </div>
@@ -133,8 +131,6 @@ function App() {
               key={movie.imdbID} 
               favoriteMovies={favoriteMovies}
               handleOpenMoviePage={handleOpenMoviePage} 
-              handleSetNewFavoriteMovie={handleSetNewFavoriteMovie}
-              handleRemoveFromFavorites={handleRemoveFromFavorites}
             />
           ))}
         </div>
