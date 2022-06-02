@@ -34,6 +34,8 @@ function App() {
         .then((response) => {setMovieList(response.data.Search)})
   }, [searchTerm])  
   
+  console.log(selectedMovie)
+  
   // Effects
   useEffect(() => {
       handleCloseMoviePage()

@@ -9,7 +9,7 @@ const MoviePage = ({ selectedMovie, favoriteMovies, handleSetNewFavoriteMovie, h
             <h3>{selectedMovie.Year}</h3>
           </div>
           <div>
-            <h4>{`${selectedMovie.Type.toUpperCase()} RATED ${selectedMovie.imdbRating}`}</h4>
+            <h4>{`This ${selectedMovie.Type} is rated ${selectedMovie.imdbRating} on IMDb`}</h4>
             <p>{selectedMovie.Plot}</p>
           </div>
           {
