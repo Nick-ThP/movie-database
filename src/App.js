@@ -26,7 +26,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('Spider-man')
   const [loading, setLoading] = useState(false)
   const [favoriteToggle, setFavoriteToggle] = useState(false)
-  const [favoriteMovies, setFavoriteMovies] = useState([])
+  const [favoriteMovies, setFavoriteMovies] = useLocalStorage('movies', [])
 
   // Search callback
   const searchMovies = useCallback(() => {
