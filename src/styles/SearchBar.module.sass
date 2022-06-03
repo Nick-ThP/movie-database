@@ -1,0 +1,31 @@
+@import './variables'
+    
+.search
+    display: flex
+    align-items: center
+    justify-content: space-between
+    background-color: $primaryColor
+    width: min(450px, 80vw)
+    margin: 0 auto
+    padding: 10px
+    border-radius: 10px
+    box-shadow: 0 0 5px #ffffff
+    background-color: $primaryColor
+
+.searchInput 
+    flex: 2
+    background-color:  $primaryColor
+    background: none
+    border: none
+    &:focus
+        outline: none
+
+.searchIcon
+    width: 20px
+    height: 20px
+    opacity: 0.3
+
+@media only screen and (max-width: 720px)
+
+    .search
+        flex: 0 1 auto
