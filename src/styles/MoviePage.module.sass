@@ -15,14 +15,14 @@
 
 .poster
     display: flex
-    justify-content: flex-start
-    align-content: flex-start
+    justify-content: center
+    align-content: center
     background-color: $darkColor
     padding: 20px 20px 20px 0
     
 
 .poster img
-    align-self: flex-start
+    align-self: center
     object-fit: none
     border-radius: 10px
 
@@ -123,6 +123,10 @@
     .buttonActive, .buttonInactive
         margin-top: 20px
 
+    .button, .buttonActive, .buttonInactive
+        gap: 7px
+        width: 100%
+
     .info
         margin-bottom: 0
         padding: 20px 20px 0
@@ -133,4 +137,4 @@
 
     .plot
         p
-            -webkit-line-clamp: 1
+            -webkit-line-clamp: 2
