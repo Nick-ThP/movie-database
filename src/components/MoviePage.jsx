@@ -11,12 +11,14 @@ const MoviePage = ({ selectedMovie, favoriteMovies, handleSetNewFavoriteMovie, h
           <div>
             <h2>{selectedMovie.Title}</h2>
             <h3>{selectedMovie.Genre}</h3>
-            <p>Released: <em>{selectedMovie.Released}</em><br />
+            <p>
+               Released: <em>{selectedMovie.Released}</em><br />
                Country: <em>{selectedMovie.Country}</em><br />
                Runtime: <em>{selectedMovie.Runtime}</em><br />
                Directed by: <em>{`${selectedMovie.Director}`}</em><br />
                Written by: <em>{`${selectedMovie.Writer}`}</em><br />
-               Starring: <em>{`${selectedMovie.Actors}`}</em></p>
+               Starring: <em>{`${selectedMovie.Actors}`}</em>
+            </p>
             <h4>{`This ${selectedMovie.Type} is rated ${selectedMovie.imdbRating} on IMDb with ${selectedMovie.imdbVotes} votes`}</h4>
             <div className={styles.plot}>
               <p className={fullPlot === true ? styles.extraClamp : undefined}><span style={{fontWeight: 'bold', display: 'block', marginBottom: '0.5rem'}}>Outline</span>{selectedMovie.Plot}</p>
