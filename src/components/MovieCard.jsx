@@ -17,7 +17,7 @@ const MovieCard = ({ movie, favoriteMovies, handleOpenMoviePage }) => {
             </svg>
           }
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center' }}>
           <h3>{movie.Type.toUpperCase()}</h3>
           <h3>{movie.Year}</h3>
         </div>
