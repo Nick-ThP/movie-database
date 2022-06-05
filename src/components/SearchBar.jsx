@@ -1,15 +1,15 @@
 import styles from '../styles/SearchBar.module.sass'
 import SearchIcon from "../images/search.svg";
 
-const SearchBar = ({ searchTerm, setSearchTerm }) => {
+const SearchBar = ({ query, setQuery }) => {
   return (
     <div className={styles.search}>
       <input
         className={styles.searchInput}
         type="text"
         placeholder="Search here..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
       <div className={styles.searchIcon}>
         <img src={SearchIcon} alt="search" />
