@@ -15,9 +15,9 @@ const MoviePage = ({ selectedMovie, favoriteMovies, handleSetNewFavoriteMovie, h
                Released: <em>{selectedMovie.Released}</em><br />
                Country: <em>{selectedMovie.Country}</em><br />
                Runtime: <em>{selectedMovie.Runtime}</em><br />
-               Directed by: <em>{`${selectedMovie.Director}`}</em><br />
-               Written by: <em>{`${selectedMovie.Writer}`}</em><br />
-               Starring: <em>{`${selectedMovie.Actors}`}</em>
+               Directed by: <em>{selectedMovie.Director}</em><br />
+               Written by: <em>{selectedMovie.Writer}</em><br />
+               Starring: <em>{selectedMovie.Actors}</em>
             </p>
             <h4>{`This ${selectedMovie.Type} is rated ${selectedMovie.imdbRating} on IMDb with ${selectedMovie.imdbVotes} votes`}</h4>
             <div className={styles.plot}>
