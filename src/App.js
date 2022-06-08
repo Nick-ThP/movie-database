@@ -78,6 +78,7 @@ function App() {
   useEffect(() => {
       handleCloseMoviePage()
       searchMovies()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchMovies])
   
   // Render
