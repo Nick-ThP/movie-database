@@ -54,18 +54,18 @@ function App() {
 
   // Handler for opening a page for a specific movie (requires a new fetch for more info)
   const handleOpenMoviePage = (imdbID) => {
+      window.scroll(0, 0)
       setFavoriteToggle(false)
       setLoading(true)
-      axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${imdbID}`)
+      axios.get(`http://www.omdbapi.com/?apikey=${key}&i=${imdbID}&plot=full`)
         .then((response) => {setSelectedMovie(response.data)})
-        .then((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? window.scroll(0, 0) : null)
         .then(setTimeout(() => {setLoading(false)}, 700))
   }
 
   const handleCloseMoviePage = () => {
+      window.scroll(0, 0)
       setFavoriteToggle(false)
       setSelectedMovie('')
-      window.scroll(0, 0)
   }  
 
   const handleSetNewFavoriteMovie = (selected) => {
