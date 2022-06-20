@@ -13,7 +13,7 @@ import SearchBar from './components/SearchBar';
 import ToggleButton from './components/ToggleButton';
 import MovieCard from './components/MovieCard';
 import MoviePage from './components/MoviePage';
-
+import Pagination from './components/Pagination';
 
 // API key
 const key = process.env.REACT_APP_MOVIE_DATABASE_API_KEY
@@ -96,8 +96,7 @@ function App() {
         <div className={styles.skewed}></div>
       </div>
      
-      {/* Nested ternary operators... Yes, i know. I might implement React Router later on...
-      This entire project has been a big learning project, so it's not the cleanest */}
+      {/* Implement React Router */}
 
       {
         loading === true
@@ -150,15 +149,7 @@ function App() {
               />
             ))}
           </div>
-          <div className={styles.pagination}>
-            <p className={page === 1 ? styles.invisible : styles.clickable} onClick={page > 1 ? () => setPage(page - 1) : null}>Previous</p>
-            <p className={page === 1 ? styles.unClickable : styles.clickable} onClick={() => setPage(1)} style={{marginLeft: '2rem'}}>1</p>
-            <p className={page === 2 ? styles.unClickable : styles.clickable} onClick={() => setPage(2)}>2</p>
-            <p className={page === 3 ? styles.unClickable : styles.clickable} onClick={() => setPage(3)}>3</p>
-            <p className={page === 4 ? styles.unClickable : styles.clickable} onClick={() => setPage(4)}>4</p>
-            <p className={page === 5 ? styles.unClickable : styles.clickable} onClick={() => setPage(5)} style={{marginRight: '2rem'}}>5</p>
-            <p className={page === 5 ? styles.invisible : styles.clickable} onClick={page < 5 ? () => setPage(page + 1) : null}>Next</p>
-          </div>
+          <Pagination page={page} setPage={setPage} />
         </>
       :
         <div className={styles.noResults}>
