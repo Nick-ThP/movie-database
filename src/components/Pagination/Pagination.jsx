@@ -1,4 +1,4 @@
-import styles from '../styles/Pagination.module.sass'
+import styles from './Pagination.module.sass'
 
 const Pagination = ({ page, setPage }) => {
   return (

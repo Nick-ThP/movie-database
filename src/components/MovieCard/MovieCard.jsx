@@ -1,4 +1,4 @@
-import styles from '../styles/MovieCard.module.sass';
+import styles from './MovieCard.module.sass';
 
 const MovieCard = ({ movie, favoriteMovies, handleOpenMoviePage }) => {
   return (

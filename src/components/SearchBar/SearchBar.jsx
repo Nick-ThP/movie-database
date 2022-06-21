@@ -1,5 +1,5 @@
-import styles from '../styles/SearchBar.module.sass'
-import SearchIcon from "../images/search.svg";
+import styles from './SearchBar.module.sass'
+import SearchIcon from "../../images/search.svg";
 
 const SearchBar = ({ query, setQuery }) => {
   return (

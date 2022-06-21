@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '../styles/MoviePage.module.sass';
+import styles from './MoviePage.module.sass';
 
 const MoviePage = ({ selectedMovie, favoriteMovies, handleSetNewFavoriteMovie, handleRemoveFromFavorites, handleCloseMoviePage }) => {
 

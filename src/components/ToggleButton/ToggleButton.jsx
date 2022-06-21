@@ -1,4 +1,4 @@
-import styles from "../styles/ToggleButton.module.sass";
+import styles from "./ToggleButton.module.sass";
 
 const ToggleButton = ({ favoriteToggle, setFavoriteToggle }) => {
   return (
