@@ -22,9 +22,11 @@ function App() {
 
   // States
   const [movieList, setMovieList] = useState([])
+  const [totalList, setTotalList] = useState([])
   const [selectedMovie, setSelectedMovie] = useState('')
   const [query, setQuery] = useState('Spider-man')
   const [searchTerm, setSearchTerm] = useState('Spider-man')
+  const [typeFilter, setTypeFilter] = useState('')
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const [favoriteToggle, setFavoriteToggle] = useState(false)
@@ -32,9 +34,44 @@ function App() {
 
   // Search callback (activates the second useEffect)
   const searchMovies = useCallback(() => {
-      axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}&page=${page}`)
+      axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}&type=${typeFilter}&page=${page}`)
         .then((response) => {setMovieList(response.data.Search)})
-  }, [searchTerm, page])  
+  }, [searchTerm, typeFilter, page]) 
+
+  // Callback to set total amount of results getting fetched (used for pagination)
+  const setTotal = useCallback(async() => {
+      setTotalList([])
+      await axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}&type=${typeFilter}&page=1`)
+        .then((response) => {
+          if (response.data.Search.length !== 0) {
+            setTotalList([...response.data.Search]) 
+          }
+        })
+      await axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}&type=${typeFilter}&page=2`)
+        .then((response) => {
+          if (response.data.Search.length !== 0) {
+            setTotalList(prev => [...response.data.Search, ...prev]) 
+          }
+        })
+      await axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}&type=${typeFilter}&page=3`)
+        .then((response) => {
+          if (response.data.Search.length !== 0) {
+            setTotalList(prev => [...response.data.Search, ...prev]) 
+          }
+        })
+      await axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}&type=${typeFilter}&page=4`)
+        .then((response) => {
+          if (response.data.Search.length !== 0) {
+            setTotalList(prev => [...response.data.Search, ...prev]) 
+          }
+        })
+      await axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${searchTerm}&type=${typeFilter}&page=5`)
+        .then((response) => {
+          if (response.data.Search.length !== 0) {
+            setTotalList(prev => [...response.data.Search, ...prev]) 
+          }
+        })
+  }, [searchTerm, typeFilter])
   
   // Handlers
 
@@ -78,16 +115,17 @@ function App() {
   useEffect(() => {
       handleCloseMoviePage()
       searchMovies()
+      setTotal()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchMovies])
-  
+
   // Render
   return (
     <>
       <div className={styles.container}>
         <h1 className={styles.title} onClick={() => {handleCloseMoviePage(); setPage(1)}}>Movie Database</h1>
         <div className={styles.searchAndToggle}>
-          <SearchBar query={query} setQuery={setQuery} />
+          <SearchBar query={query} setQuery={setQuery} setTypeFilter={setTypeFilter} />
           <ToggleButton favoriteToggle={favoriteToggle} setFavoriteToggle={setFavoriteToggle} />
         </div>
       </div>
@@ -96,7 +134,7 @@ function App() {
         <div className={styles.skewed}></div>
       </div>
      
-      {/* Implement React Router */}
+      {/* Implement React Router at some point */}
 
       {
         loading === true
@@ -149,7 +187,7 @@ function App() {
               />
             ))}
           </div>
-          <Pagination page={page} setPage={setPage} />
+          <Pagination page={page} setPage={setPage} totalList={totalList} />
         </>
       :
         <div className={styles.noResults}>

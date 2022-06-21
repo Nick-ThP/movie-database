@@ -13,10 +13,25 @@
     background-color: $primaryColor
 
 .searchInput 
-    flex: 2
-    background-color:  $primaryColor
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-wrap: wrap
+    width: 60%
+    background-color: $primaryColor
     background: none
     border: none
+    font-size: 1.1rem
+    &:focus
+        outline: none
+
+.searchFilter
+    width: 30%
+    background-color: $primaryColor
+    border: 2px solid gray
+    padding: 2px
+    font-size: 0.8rem
+    border-radius: 5px
     &:focus
         outline: none
 
