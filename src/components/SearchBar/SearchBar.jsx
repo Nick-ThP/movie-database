@@ -23,7 +23,7 @@ const SearchBar = ({ query, setQuery, releaseFilter, setReleaseFilter, typeFilte
           value={releaseFilter}
           onChange={(e) => setReleaseFilter(e.target.value)}
         />
-        <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+        <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} style={{paddingRight: '10px'}}>
           <option value="" selected="selected">
             All categories
           </option>
