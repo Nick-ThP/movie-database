@@ -32,7 +32,6 @@ const MoviePage = ({ selectedMovie, favoriteMovies, handleSetNewFavoriteMovie, h
             </div>
           </div>
           <div>
-            <hr style={{color: 'white', marginTop: '1.5rem', marginBottom: '1rem'}} />
             <div className={styles.buttons}>
               <button className={styles.button} onClick={handleCloseMoviePage}>
                 <svg className={styles.icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
