@@ -3,7 +3,7 @@ import SearchIcon from "../../images/search.svg";
 
 const SearchBar = ({ query, setQuery, releaseFilter, setReleaseFilter, typeFilter, setTypeFilter, favoriteToggle }) => {
   return (
-    <div className={styles.search} style={{ opacity: favoriteToggle ? 0.7 : 1 }}>
+    <div className={styles.search} style={{ transition: '0.8s ease', opacity: favoriteToggle ? 0.7 : 1 }}>
       <div className={styles.searchIcon}>
         <img src={SearchIcon} alt="search" />
       </div>
