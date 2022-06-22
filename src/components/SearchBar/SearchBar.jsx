@@ -19,7 +19,7 @@ const SearchBar = ({ query, setQuery, releaseFilter, setReleaseFilter, typeFilte
           type="number"
           min={1000}
           max={9999}
-          placeholder="Released"
+          placeholder="Year"
           value={releaseFilter}
           onChange={(e) => setReleaseFilter(e.target.value)}
         />
