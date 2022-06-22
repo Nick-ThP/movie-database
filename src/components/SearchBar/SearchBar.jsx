@@ -33,7 +33,6 @@ const SearchBar = ({ query, setQuery, releaseFilter, setReleaseFilter, typeFilte
         </select>
         <p className={styles.x} onClick={() => {setReleaseFilter(''); setTypeFilter('')}}>X</p>
       </div>
-      
     </div>
   );
 };
