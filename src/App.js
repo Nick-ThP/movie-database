@@ -10,7 +10,7 @@ import styles from './styles/App.module.sass';
 
 // Components
 import SearchBar from './components/SearchBar/SearchBar';
-import ToggleButton from './components//ToggleButton/ToggleButton';
+import ToggleButton from './components/ToggleButton/ToggleButton';
 import MovieCard from './components/MovieCard/MovieCard';
 import MoviePage from './components/MoviePage/MoviePage';
 import Pagination from './components/Pagination/Pagination';
